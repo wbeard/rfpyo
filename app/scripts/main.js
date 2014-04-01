@@ -24,7 +24,9 @@ app.controller('AppController', function($scope) {
   }
 
   $scope.addPhrase = function() {
-    _addPhrase($("#newPhraseText").val(), $("#newPhraseTags").val().split(", "))
+    _addPhrase($("#newPhraseText").val(), $("#newPhraseTags").val().split(", "));
+    $("#newPhraseText").val('');
+    $("#newPhraseTags").val('');
   };
 
   $scope.removePhrase = function(index) {
