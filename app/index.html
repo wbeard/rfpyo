@@ -30,6 +30,8 @@
 
 
         <div class="container-fluid main">
+            <h1 style="text-align: center">rfpYO!</h1>
+            <br />
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="border-right: 1px solid #ccc">
                     <form ng-submit="addPhrase()">
@@ -60,8 +62,8 @@
                                     <i class="fa fa-fw fa-tag"></i> {{tag}}
                                 </span>
                             </div>
-                            <div ng-hide="phrases.length">No phrases</div>
                         </div>
+                        <div style="text-align:center;" ng-hide="phrases.length">No phrases</div>
                     </div>
                 </div>
             </div>
