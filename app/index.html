@@ -18,6 +18,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="scripts/main.js"></script>
     </head>
@@ -28,27 +29,40 @@
 
 
         <div class="container">
-            <div class="center-block">
-                <div class="form-group">
-                    <label>New Phrase</label>
-                    <input type="text" class="form-control"/>
-                    <button class="btn btn-primary" ng-click="addPhrase(phrase)">Add Phrase</button>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="border-right: 1px solid #ccc">
+                    <form ng-submit="addPhrase()">
+                        <label>Add a phrase</label>
+                        <textarea id="newPhraseText" placeholder="Add a phrase" type="text" class="form-control" style="resize: vertical"></textarea>
+                        <br />
+                        <label>Tags</label>
+                        <input id="newPhraseTags" placeholder="e.g. Dallas, Settlement" type="text" class="form-control" />
+                        <p class="help-block">Separate them with commas</p>
+                        <br />
+                        <button class="btn btn-primary">Add</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label>Search</label>
-                    <input ng-model="query" type="text" class="form-control" id="phraseSearch" placeholder="Tag phrase" />
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Search</label>
+                        <input ng-model="query" type="text" class="form-control" id="phraseSearch" placeholder="Search by phrase or tags" />
+                    </div>
                 </div>
             </div>
-            <ul>
-            <li ng-repeat="phrase in phrases | filter:query">
-                {{phrase.phrase}}
-                <ul>
-                    <li ng-repeat="tag in phrase.tags">
-                        {{tag}}
-                    </li>
+            <br />
+            <div class="row">
+                <h3>Phrases</h3>
+                <ul class="center-block">
+                <li ng-repeat="phrase in phrases track by $index | filter:query">
+                    {{phrase.phrase}}
+                    <ul>
+                        <li ng-repeat="tag in phrase.tags">
+                            {{tag}}
+                        </li>
+                    </ul>
+                </li>
                 </ul>
-            </li>
-            </ul>
+            </div>
         </div>
 
 

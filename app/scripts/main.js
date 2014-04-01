@@ -1,24 +1,18 @@
 var app = angular.module('app', []);
 
 app.controller('AppController', function($scope) {
-  $scope.phrases = [
-    {
-      "phrase": "Our one day settlement is awesome." ,
-      "tags": [
-        "dallas",
-        "settlement"
-      ]
-    }
-  ];
-  $scope.tags = [
-    'dallas',
-    'settlement'
-  ];
-  $scope.addPhrase = function(phrase) {
-    var obj = {
-      "phrase": phrase
-    };
+  $scope.phrases = JSON.parse(localStorage.getItem("phrases")) || [];
+  $scope.tags = JSON.parse(localStorage.getItem("tags")) || [];
 
-    $scope.phrases.push(obj);
+  var _addPhrase = function(textVal, tags) {
+    $scope.phrases.push({
+      "phrase": textVal,
+      "tags": tags
+    });
+    localStorage.setItem("phrases", JSON.stringify($scope.phrases));
+  }
+
+  $scope.addPhrase = function() {
+    _addPhrase($("#newPhraseText").val(), $("#newPhraseTags").val().split(", "))
   };
 });
