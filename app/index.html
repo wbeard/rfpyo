@@ -55,6 +55,7 @@
                 <ul class="center-block">
                 <li ng-repeat="phrase in phrases | filter:query">
                     {{phrase.phrase}}
+                    <a class="close" ng-click="removePhrase($index)">&times;</a>
                     <ul>
                         <li ng-repeat="tag in phrase.tags">
                             {{tag}}
