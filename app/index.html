@@ -17,6 +17,7 @@
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <!-- endbuild -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
@@ -28,41 +29,39 @@
         <![endif]-->
 
 
-        <div class="container">
+        <div class="container-fluid main">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="border-right: 1px solid #ccc">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="border-right: 1px solid #ccc">
                     <form ng-submit="addPhrase()">
-                        <label>Add a phrase</label>
+                        <label><i class="fa fa-fw fa-comment"></i> Add a phrase</label>
                         <textarea id="newPhraseText" placeholder="Add a phrase" type="text" class="form-control" style="resize: vertical"></textarea>
                         <br />
-                        <label>Tags</label>
+                        <label><i class="fa fa-fw fa-tags"></i> Tags</label>
                         <input id="newPhraseTags" placeholder="e.g. Dallas, Settlement" type="text" class="form-control" />
                         <p class="help-block">Separate them with commas</p>
                         <br />
                         <button class="btn btn-primary">Add</button>
                     </form>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="border-right: 1px solid #ccc">
                     <div class="form-group">
-                        <label>Search</label>
+                        <label><i class="fa fa-fw fa-search"></i> Search</label>
                         <input ng-model="query" type="text" class="form-control" id="phraseSearch" placeholder="Search by phrase or tags" />
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                <h3>Phrases</h3>
-                <ul class="center-block">
-                <li ng-repeat="phrase in phrases | filter:query">
-                    {{phrase.phrase}}
-                    <a class="close" ng-click="removePhrase($index)">&times;</a>
-                    <ul>
-                        <li ng-repeat="tag in phrase.tags">
-                            {{tag}}
-                        </li>
+                <div class="col-lg-6 col-md-6 cold-sm-6 col-xs-12">
+                    <ul class="center-block">
+                    <li ng-repeat="phrase in phrases | filter:query">
+                        {{phrase.phrase}}
+                        <a class="close" ng-click="removePhrase($index)">&times;</a>
+                        <ul>
+                            <li ng-repeat="tag in phrase.tags">
+                                {{tag}}
+                            </li>
+                        </ul>
+                    </li>
                     </ul>
-                </li>
-                </ul>
+                </div>
             </div>
         </div>
 
