@@ -1,15 +1,15 @@
 var app = angular.module('app', []);
 
 app.controller('AppController', function($scope) {
-  $scope.phrases = JSON.parse(localStorage.getItem("phrases")) || [];
-  $scope.tags = JSON.parse(localStorage.getItem("tags")) || [];
+  $scope.phrases = angular.fromJson(localStorage.getItem("phrases")) || [];
+  $scope.tags = angular.fromJson(localStorage.getItem("tags")) || [];
 
   var _addPhrase = function(textVal, tags) {
     $scope.phrases.push({
       "phrase": textVal,
       "tags": tags
     });
-    localStorage.setItem("phrases", JSON.stringify($scope.phrases));
+    localStorage.setItem("phrases", angular.toJson($scope.phrases));
   }
 
   $scope.addPhrase = function() {

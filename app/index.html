@@ -53,7 +53,7 @@
             <div class="row">
                 <h3>Phrases</h3>
                 <ul class="center-block">
-                <li ng-repeat="phrase in phrases track by $index | filter:query">
+                <li ng-repeat="phrase in phrases | filter:query">
                     {{phrase.phrase}}
                     <ul>
                         <li ng-repeat="tag in phrase.tags">
