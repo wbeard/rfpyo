@@ -51,17 +51,18 @@
                 </div>
                 <div class="col-lg-6 col-md-6 cold-sm-6 col-xs-12">
                     <label><i class="fa fa-fw fa-comments"></i> Phrases</label>
-                    <ul class="center-block">
-                    <li ng-repeat="phrase in phrases | filter:query">
-                        {{phrase.phrase}}
-                        <a class="close" ng-click="removePhrase($index)">&times;</a>
-                        <ul>
-                            <li ng-repeat="tag in phrase.tags">
-                                {{tag}}
-                            </li>
-                        </ul>
-                    </li>
-                    </ul>
+                    <div class="phrases">
+                        <div class="phrase phrase-{{ $odd ? 'odd' : 'even' }}" ng-repeat="phrase in phrases | filter:query">
+                            {{phrase.phrase}}
+                            <a class="close" ng-click="removePhrase($index)">&times;</a>
+                            <div class="tags row">
+                                <span class="tag bg-primary" ng-repeat="tag in phrase.tags">
+                                    <i class="fa fa-fw fa-tag"></i> {{tag}}
+                                </span>
+                            </div>
+                            <div ng-hide="phrases.length">No phrases</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

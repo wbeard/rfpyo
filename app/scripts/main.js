@@ -4,23 +4,35 @@ Array.prototype.remove = function(from, to) {
   return this.push.apply(this, rest);
 };
 
-var app = angular.module('app', []);
+var app = angular.module('app', []),
+    provider = {
+        obj: window.localStorage,
+        get: "getItem",
+        set: "setItem"
+    },
+    ResourceProvider = function(verb, resource, val) {
+      if(val) {
+        return provider.obj[provider[verb]](resource, val);
+      } else {
+        return provider.obj[provider[verb]](resource);
+      }
+    };
 
 app.controller('AppController', function($scope) {
-  $scope.phrases = angular.fromJson(localStorage.getItem("phrases")) || [];
-  $scope.tags = angular.fromJson(localStorage.getItem("tags")) || [];
+  $scope.phrases = angular.fromJson(ResourceProvider("get", "phrases")) || [];
+  $scope.tags = angular.fromJson(ResourceProvider("get", "tags")) || [];
 
   var _addPhrase = function(textVal, tags) {
     $scope.phrases.push({
       "phrase": textVal,
       "tags": tags
     });
-    localStorage.setItem("phrases", angular.toJson($scope.phrases));
+    ResourceProvider("set", "phrases", angular.toJson($scope.phrases));
   };
 
   var _removePhrase = function(index) {
     $scope.phrases.remove(index);
-    localStorage.setItem("phrases", angular.toJson($scope.phrases));
+    ResourceProvider("set", "phrases", angular.toJson($scope.phrases));
   }
 
   $scope.addPhrase = function() {

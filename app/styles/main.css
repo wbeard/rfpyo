@@ -16,6 +16,20 @@ body {
     padding-right: 15px;
 }
 
+.phrase {
+    padding: 5px;
+}
+
+.phrase-odd {
+    background: #ededed;
+}
+
+.tag {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 3px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
